@@ -1,0 +1,27 @@
+{
+  "name": "jparty",
+  "version": "1.0.0",
+  "description": "The Ultimate Party Planning Experience",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "build": "echo 'No build step needed for static site'",
+    "preview": "npx serve . -s"
+  },
+  "keywords": [
+    "party",
+    "events",
+    "planning",
+    "celebration",
+    "web-app"
+  ],
+  "author": "JParty Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
