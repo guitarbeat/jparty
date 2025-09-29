@@ -1,99 +1,57 @@
-# 🎉 JParty - The Ultimate Party Planning Experience
 
-A fun, interactive web application for party planning and celebrations!
+# JParty Buzzer Integration (WIP)
 
-## ✨ Features
+This PR scaffolds a minimal buzzer system inspired by `@gdsimco/JParty-with-buzzers`:
 
-- 🎯 **Interactive Party Planning** - Beautiful, responsive design for planning events
-- 🎵 **Fun Animations** - Engaging animations and effects to make planning enjoyable  
-- 👥 **User-Friendly Interface** - Clean, modern design that works on all devices
-- 🎊 **Interactive Elements** - Click effects, confetti, and celebration sounds
+- FastAPI WebSocket server to accept buzz events
+- Simple web client (vanilla JS) for browser/mobile buzzing
+- Physical buzzer client using `pygame` joystick input
+- Shared message protocol and configuration
 
-## 🚀 Live Demo
+## Quick start
 
-Visit the live application: [JParty on Vercel](https://your-deployment-url.vercel.app)
+1) Install dependencies:
 
-## 📱 Local Development
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/guitarbeat/jparty.git
-cd jparty
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-2. Install dependencies:
+2) Run the server:
+
 ```bash
-npm install
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-3. Start the development server:
+3) Open the web client:
+
+`http://localhost:8000`
+
+4) Optional: Run the physical buzzer client (needs a joystick/controller):
+
 ```bash
-npm run dev
+python buzzer/physical_buzzer.py --server ws://localhost:8000/ws/buzz --player Player1 --color red
 ```
 
-4. Open your browser and visit `http://localhost:3000`
-
-## 🌐 Deploy to Vercel
-
-### Option 1: Deploy via Vercel CLI
-1. Install Vercel CLI:
-```bash
-npm i -g vercel
-```
-
-2. Deploy:
-```bash
-vercel
-```
-
-### Option 2: Deploy via GitHub Integration
-1. Fork this repository
-2. Connect your GitHub account to [Vercel](https://vercel.com)
-3. Import the repository
-4. Deploy automatically with each push
-
-### Option 3: Deploy Button
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/guitarbeat/jparty)
-
-## 🛠️ Technology Stack
-
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Styling**: Modern CSS with gradients, animations, and responsive design
-- **Deployment**: Vercel
-- **Fonts**: Google Fonts (Poppins)
-
-## 📄 Project Structure
+## Repo structure
 
 ```
-jparty/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles and animations
-├── script.js           # JavaScript functionality
-├── package.json        # Node.js dependencies and scripts
-├── vercel.json         # Vercel deployment configuration
-└── README.md           # Project documentation
+app/
+  main.py               # FastAPI app and WebSocket endpoint
+  templates/index.html  # Web client UI
+  static/app.js         # Web client script
+buzzer/
+  physical_buzzer.py    # pygame-based joystick buzzer client
+config/
+  settings.example.toml # Example configuration
+requirements.txt
 ```
 
-## 🎨 Customization
+## Notes
 
-Feel free to customize the colors, animations, and content to match your party theme:
+- This is an initial WIP scaffold to enable end-to-end tests. Further integration with the full JParty app will follow.To run locally:
+  uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
-- **Colors**: Update the CSS gradient variables in `styles.css`
-- **Animations**: Modify animation keyframes in `styles.css` and `script.js`
-- **Content**: Edit the text and emojis in `index.html`
+Open http://localhost:8000
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🎊 Let's Party!
-
-Ready to start planning your next celebration? Click that party button and let the fun begin! 🥳
+Optional: python buzzer/physical_buzzer.py --server ws://localhost:8000/ws/buzz --player Player1 --color red
