@@ -1,0 +1,11 @@
+[server]
+port = 8000
+host = "0.0.0.0"
+
+[client]
+websocket_path = "/ws/buzz"
+
+[buzzer]
+button_index = 0
+color = "#ff0000"
+player = "Player1"
